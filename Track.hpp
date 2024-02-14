@@ -8,7 +8,6 @@ using namespace std;
 
 class Track {
 private:
-
     string dark, light;
 
     void addPixel(int pixelVal , int startX , int startY , int curX , int curY);

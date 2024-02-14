@@ -134,3 +134,4 @@ void Track::addPixel(int pixelVal , int x , int y){
             break;
     }
 }
+
