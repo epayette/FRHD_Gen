@@ -27,4 +27,6 @@ public:
     void updateFile(string fileName);
 
     void addPixel(int pixelVal , int x , int y);
+
+    void addImage(*Image img , int startX , int startY);
 };

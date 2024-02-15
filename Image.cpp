@@ -42,7 +42,12 @@ Image::void imageInit(string fileName){
     }
   }
 }
-
+int getWidth(){
+    return width;
+}
+int getLength(){
+    return height;
+}
 Image::void pixelSet(int row , int column , int value){
     data[column + (row * width)] = value;
 }

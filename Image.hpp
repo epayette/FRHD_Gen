@@ -17,6 +17,10 @@ public:
 
     void imageInit(string fileName);
 
+    int getWidth();
+
+    int getLength();
+
     int pixelGet(int row , int column);
 
     void pixelSet(int row , int column , int value);
