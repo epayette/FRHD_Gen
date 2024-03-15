@@ -5,6 +5,7 @@
 #include<fstream>
 
 #include "Track.hpp"
+#include "Image.hpp"
 
 using namespace std;
 
@@ -135,12 +136,12 @@ void Track::addPixel(int pixelVal , int x , int y){
     }
 }
 
-void Track::addImage(*Image img , int startX , int startY){
+void Track::addImage(Image * img , int startX , int startY){
 
-    for (int r = 0 ; r < img.getHeight() ; r++){
-        for (int c = 0 ; c < img.getWidth() ; c++){
+    for (int r = 0 ; r < img->getHeight() ; r++){
+        for (int c = 0 ; c < img->getWidth() ; c++){
 
-            int val = img.pixelGet(r , c);
+            int val = img->pixelGet(r , c);
 
             addPixel(val , (2 * c) + startX , (2 * c + startY));
         }

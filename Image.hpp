@@ -1,3 +1,6 @@
+#ifndef IMAGE_HPP
+#define IMAGE_HPP
+
 #include<string>
 #include<iostream>
 #include<cmath>
@@ -6,11 +9,15 @@
 
 using namespace std;
 
-class Image(){
+class Image{
 private:
+
+    static const int MAX_WIDTH = 1280;
+    static const int MAX_HEIGHT = 1280;
+
     int width , height;
 
-    int data[width * height];
+    int data[MAX_WIDTH * MAX_HEIGHT];
 
 public:
     Image(int widthIn , int heightIn) : width(widthIn) , height(heightIn){}
@@ -19,9 +26,11 @@ public:
 
     int getWidth();
 
-    int getLength();
+    int getHeight();
 
     int pixelGet(int row , int column);
 
     void pixelSet(int row , int column , int value);
-}
+};
+
+#endif

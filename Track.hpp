@@ -1,8 +1,13 @@
+#ifndef TRACK_HPP
+#define TRACK_HPP
+
 #include<string>
 #include<iostream>
 #include<cmath>
 #include<vector>
 #include<fstream>
+
+#include "Image.hpp"
 
 using namespace std;
 
@@ -28,5 +33,7 @@ public:
 
     void addPixel(int pixelVal , int x , int y);
 
-    void addImage(*Image img , int startX , int startY);
+    void addImage(Image* img , int startX , int startY);
 };
+
+#endif // TRACK_HPP

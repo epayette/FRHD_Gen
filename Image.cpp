@@ -1,27 +1,11 @@
-#include<string>
-#include<iostream>
-#include<cmath>
-#include<vector>
+#include "Image.hpp"
+
 #include<fstream>
+#include<cassert>
 
 using namespace std;
 
-class Image(){
-private:
-    int width , height;
-
-    int data[1280 * 1280];
-
-public:
-
-    void imageInit(string fileName);
-
-    void pixelGet(int row , int column);
-
-    void pixelSet(int row , int column);
-}
-
-Image::void imageInit(string fileName){
+void Image::imageInit(string fileName){
 
     ifstream is(fileName);
 
@@ -35,22 +19,22 @@ Image::void imageInit(string fileName){
 
     int r , g , b; 
 
-    for(int r = 0 ; r < height ; r++){
-        for(int c = 0 ; c < width ; c++){
+    for(int row = 0 ; row < height ; row++){
+        for(int col = 0 ; col < width ; col++){
         is >> r >> g >> b;
-        pixelSet(r , c , (r + g + b) / 3);
+        pixelSet(row , col , (r + g + b) / 3);
     }
   }
 }
-int getWidth(){
+int Image::getWidth(){
     return width;
 }
-int getLength(){
+int Image::getHeight(){
     return height;
 }
-Image::void pixelSet(int row , int column , int value){
+void Image::pixelSet(int row , int column , int value){
     data[column + (row * width)] = value;
 }
-Image::int pixelGet(int row , int column){
+int Image::pixelGet(int row , int column){
     return (data[column + (row * width)]);
 }
