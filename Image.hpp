@@ -20,6 +20,8 @@ private:
     int data[MAX_WIDTH * MAX_HEIGHT];
 
 public:
+    Image() : width(0) , height(0){};
+
     Image(int widthIn , int heightIn) : width(widthIn) , height(heightIn){}
 
     void imageInit(string fileName);
