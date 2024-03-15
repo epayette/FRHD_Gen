@@ -143,7 +143,7 @@ void Track::addImage(Image * img , int startX , int startY){
 
             int val = img->pixelGet(r , c);
 
-            addPixel(val , (2 * c) + startX , (2 * c + startY));
+            addPixel(val , (3 * c) + startX , (3 * r) + startY);
         }
     }
 }

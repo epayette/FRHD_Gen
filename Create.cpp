@@ -12,8 +12,8 @@ int main(){
     Track * ride = new Track();
     Image * img = new Image();
 
-    img->imageInit("FRHDTest.ppm");
-    ride->addImage(img , 0 , 0);
+    img->imageInit("FRHDBridgeTest.ppm");
+    ride->addImage(img , -2000 , 100);
     ride->updateFile("track.txt");
 
     delete ride;

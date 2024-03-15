@@ -12,8 +12,8 @@ using namespace std;
 class Image{
 private:
 
-    static const int MAX_WIDTH = 1280;
-    static const int MAX_HEIGHT = 1280;
+    static const int MAX_WIDTH = 1920;
+    static const int MAX_HEIGHT = 1920;
 
     int width , height;
 
