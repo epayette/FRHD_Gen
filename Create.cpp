@@ -12,9 +12,10 @@ int main(){
     Track * ride = new Track();
     Image * img = new Image();
 
-    img->imageInit("FRHDBridgeTest.ppm");
-    ride->addImage(img , -2000 , 100);
-    ride->updateFile("track.txt");
+    img->imageInit("FRHDAsianTest.ppm");
+    ride->addEfficientImage(*img, -500, -500);
+    //ride->addImage(img, -500, -500);
+    ride->updateFile("test.out");
 
     delete ride;
     delete img;

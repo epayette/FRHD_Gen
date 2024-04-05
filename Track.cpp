@@ -147,3 +147,123 @@ void Track::addImage(Image * img , int startX , int startY){
         }
     }
 }
+
+bool Track::addEfficientPixel(int pixelVal, int segment){
+    bool segs[8] = {false};
+    switch(customRound(pixelVal , {255.0 , 242.3 , 195.5 , 174.3 , 140.25 , 95.2 , 45.9 , 12.8})){
+        case 0:
+            break;
+        case 1:
+            segs[0] = true;
+            break;
+        case 2:
+            segs[0] = true;
+            segs[3] = true;
+            break;
+        case 3:
+            segs[0] = true;
+            segs[1] = true;
+            segs[2] = true;
+            segs[3] = true;
+            break;
+        case 4:
+            segs[4] = true;
+            segs[0] = true;
+            break;
+        case 5:
+            segs[4] = true;
+            segs[2] = true;
+            segs[0] = true;
+            break;
+        case 6:
+            segs[4] = true;
+            segs[0] = true;
+            segs[7] = true;
+            segs[3] = true;
+            break;
+        case 7:
+            segs[4] = true;
+            segs[0] = true;
+            segs[5] = true;
+            segs[1] = true;
+            segs[6] = true;
+            segs[2] = true;
+            segs[7] = true;
+            segs[3] = true;
+            break;
+    }
+    return segs[segment];
+}
+
+void Track::addLeftStreak(Image & img, int startX, int startY, int segment, int row){
+
+    int lineStart, lineEnd;
+    int col = 0;
+
+    while(col < img.getWidth()){
+        // looking for start
+        while(!addEfficientPixel(img.pixelGet(row, col), segment)){
+            col++;
+        }
+        lineStart = col;
+
+        //looking for end
+        while(addEfficientPixel(img.pixelGet(row, col), segment) && col < img.getWidth()){
+            col++;
+        }
+        lineEnd = col;
+        vector<int> line = {startX + (lineStart * 3), startY, startX + (lineEnd * 3), startY};
+        
+        if(segment > 3){
+            addDark(line);
+        } else {
+            addLight(line);
+        }
+    }
+}
+
+void Track::addDownStreak(Image & img, int startX, int startY, int segment, int col){
+
+    int lineStart, lineEnd;
+    int row = 0;
+
+    while(row < img.getHeight()){
+        lineStart = 0;
+        lineEnd = 0;
+        // looking for start
+        while(!addEfficientPixel(img.pixelGet(row, col), segment)){
+            row++;
+        }
+        lineStart = row;
+
+        //looking for end
+        while(addEfficientPixel(img.pixelGet(row, col), segment) && row < img.getHeight()){
+            row++;
+        }
+        lineEnd = row;
+        vector<int> line = {startX, startY + (lineStart * 3), startX, startY + (lineEnd * 3)};
+        
+        if(segment > 3){
+            addDark(line);
+        } else {
+            addLight(line);
+        }
+    }
+}
+
+void Track::addEfficientImage(Image & img, int startX, int startY){
+
+    for(int row = 0; row < img.getHeight() - 1; row++){
+        addLeftStreak(img, startX, startY + (row*3), 0, row);
+        addLeftStreak(img, startX, startY + (row*3) + 2, 2, row);
+        addLeftStreak(img, startX, startY + (row*3), 4, row);
+        addLeftStreak(img, startX, startY + (row*3) + 2, 6, row);
+    }
+    cout << endl;
+    for(int col = 0; col < img.getWidth() - 1; col++){
+        addDownStreak(img, startX + (col*3) + 2, startY, 1, col);
+        addDownStreak(img, startX + (col*3), startY, 3, col);
+        addDownStreak(img, startX + (col*3) + 2, startY, 5, col);
+        addDownStreak(img, startX + (col*3), startY, 7, col);
+    }
+}

@@ -31,8 +31,14 @@ public:
 
     void updateFile(string fileName);
 
-    void addPixel(int pixelVal , int x , int y);
+    
 
+    bool addEfficientPixel(int pixelVal, int segment);
+    void addLeftStreak(Image & img, int startX, int startY, int segment, int row);
+    void addDownStreak(Image & img, int startX, int startY, int segment, int col);
+    void addEfficientImage(Image & img, int startX, int startY);
+
+    void addPixel(int pixelVal , int x , int y);
     void addImage(Image* img , int startX , int startY);
 };
 
